@@ -1,223 +1,124 @@
 # easy-ai
 
-`easy-ai` is a TypeScript AI helper for simple chat, structured output, and plugin-based orchestration.
+TypeScript-first AI framework for structured output, traces, plugins, and cost-aware routing.
+
+Package: @easyai-labs/easy-ai
 
 ## Install
 
 ```bash
-npm install easy-ai
+npm install @easyai-labs/easy-ai
 ```
 
 ## Configure
 
-Set your API key before running the CLI or your app:
-
 ```bash
-export OPENAI_API_KEY="your-api-key"
+export OPENAI_API_KEY="your-key"
 ```
 
-## Use in code
+## Quick usage
 
 ```typescript
-import { createAI } from 'easy-ai';
+import { createAI } from '@easyai-labs/easy-ai';
 
 const ai = createAI({ auto: true });
 const answer = await ai.ask('What is artificial intelligence?');
 console.log(answer);
 ```
 
-## Use the CLI
+## CLI usage
 
 ```bash
 npx easy-ai ask "What is AI?"
+npx easy-ai ask "Explain transformers" --debug
+npx easy-ai ask "Summarize this" --trace
 ```
 
 ## Structured output
 
 ```typescript
-const profile = await ai.askStructured('Extract a short profile', {
+const profile = await ai.askStructured('Extract a profile', {
   outputSchema: {
     description: 'Profile object',
-    schema: {
-      name: 'string',
-      role: 'string'
-    }
+    schema: { name: 'string', role: 'string' }
   }
 });
 ```
 
+## GitHub automation
+
+Workflows included:
+- CI: build + test on push and pull request.
+- Publish: on push to main, publishes to npm only if the package version is not already published.
+
+Required repository secret:
+- NPM_TOKEN (token with publish permission for @easyai-labs scope)
+
 ## Notes
 
-- Node.js 18+ is required.
-- `QA_MOCK=true` can be used in local testing to avoid real API calls.
-- Build output is written to `dist/`.
-# 🧠 easy-ai
+- Node.js 18+ required.
+- Build output is generated in dist/.
+- For each new npm release, bump version in package.json before pushing.
+# easy-ai
 
-[![NPM Version](https://img.shields.io/npm/v/easy-ai.svg)](https://www.npmjs.com/package/easy-ai)
-[![License](https://img.shields.io/npm/l/easy-ai.svg)](https://github.com/yourusername/easy-ai/blob/main/LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
-[![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
+TypeScript-first AI framework for structured output, traces, plugins, and cost-aware routing.
 
-**The magical AI backend framework that just works.**
+Package: `@easyai-labs/easy-ai`
 
-Build AI features in seconds, not hours. No configs. No complexity. Just pure magic.
+## Install
+
+```bash
+npm install @easyai-labs/easy-ai
+```
+
+## Configure
+
+```bash
+export OPENAI_API_KEY="your-key"
+```
+
+## Quick usage
 
 ```typescript
-import { createAI } from "easy-ai";
+import { createAI } from '@easyai-labs/easy-ai';
 
 const ai = createAI({ auto: true });
-const answer = await ai.ask("Explain quantum computing");
+const answer = await ai.ask('What is artificial intelligence?');
 console.log(answer);
 ```
 
-That's it. You're done. ✨
-
----
-
-## 🚀 Quick Start (30 seconds)
-
-### Install
+## CLI usage
 
 ```bash
-npm install easy-ai
+npx easy-ai ask "What is AI?"
+npx easy-ai ask "Explain transformers" --debug
+npx easy-ai ask "Summarize this" --trace
 ```
 
-Or use the setup script:
-
-```bash
-git clone https://github.com/yourusername/easy-ai.git
-cd easy-ai
-./setup.sh
-```
-
-### Set API Key
-
-```bash
-export OPENAI_API_KEY="your-key-here"
-```
-
-### Use
+## Structured output
 
 ```typescript
-import { createAI } from "easy-ai";
-
-const ai = createAI({ auto: true });
-const res = await ai.ask("What is AI?");
-console.log(res);
-```
-
----
-
-## 🌟 Why easy-ai?
-
-| Other Libraries | easy-ai |
-|----------------|---------|
-| 200 lines of config | 3 lines of code |
-| Choose models manually | Auto-selects best model |
-| Build RAG from scratch | Built-in, auto-detected |
-| Manage costs yourself | Cost-optimized by default |
-| Debug with console.log | `.debug()` shows everything |
-
----
-
-## ✨ Auto Mode (The Magic)
-
-Auto mode is the heart of easy-ai. It automatically:
-
-- ✅ Detects if you need RAG
-- ✅ Processes documents intelligently
-- ✅ Chooses the right model (cheap vs powerful)
-- ✅ Optimizes for cost and speed
-- ✅ Caches responses semantically
-- ✅ Makes everything just work
-
-```typescript
-const ai = createAI({ auto: true });
-
-// Simple query → uses gpt-3.5-turbo (cheap & fast)
-await ai.ask("What's 2+2?");
-
-// Complex query → uses gpt-4o-mini (powerful)
-await ai.ask("Explain the philosophical implications of consciousness");
-
-// With document → automatically uses RAG
-await ai.ask("Summarize this PDF", { 
-  documents: ["content here"] 
+const profile = await ai.askStructured('Extract a profile', {
+  outputSchema: {
+    description: 'Profile object',
+    schema: { name: 'string', role: 'string' }
+  }
 });
 ```
 
-**Zero configuration. Maximum intelligence.**
+## Release automation
 
----
+GitHub Actions is configured for CI and publish automation:
+- `CI`: runs build + tests on push/PR.
+- `Publish`: runs on push to `main`, and publishes only when `package.json` version is not yet on npm.
 
-## 🔥 Real-World Examples
+Required repository secret:
+- `NPM_TOKEN` (granular token with publish permission for `@easyai-labs`).
 
-### 1. Simple Q&A
+## Notes
 
-```typescript
-const ai = createAI({ auto: true });
-const answer = await ai.ask("What is TypeScript?");
-```
-
-### 2. Document Analysis (Auto RAG)
-
-```typescript
-import { createAI, useRAG } from "easy-ai";
-
-const ai = createAI({ auto: true })
-  .use(useRAG({ file: "./docs.pdf" }));
-
-const summary = await ai.ask("What are the key points?");
-```
-
-### 3. Cost-Optimized Pipeline
-
-```typescript
-const ai = createAI({ auto: true })
-  .use(useCache({ ttl: 3600 }))
-  .use(useRouter({ simple: "gpt-3.5-turbo", complex: "gpt-4o-mini" }));
-
-await ai.ask("Hello"); // Cached & cheap model
-console.log(ai.getUsage()); // { totalCost: 0.0001, cacheHits: 1 }
-```
-
-### 4. Debug Mode (Developer Love)
-
-```typescript
-const ai = createAI({ auto: true }).debug();
-
-const res = await ai.ask("Explain AI");
-// 🔍 [DEBUG] Query: Explain AI
-// 🤖 [DEBUG] Model: gpt-3.5-turbo
-// 🎫 [DEBUG] Tokens: 150
-// 💰 [DEBUG] Cost: $0.000300
-```
-
-### 5. Production-Ready with Guards
-
-```typescript
-import { createAI, useGuard, useCache } from "easy-ai";
-
-const ai = createAI({ auto: true })
-  .use(useCache())
-  .use(useGuard({ 
-    minLength: 20,
-    validate: (res) => !res.includes("error")
-  }));
-
-const answer = await ai.ask("Explain machine learning");
-```
-
----
-
-## 🧩 Plugin System
-
-Extend easy-ai with composable plugins:
-
-```typescript
-const ai = createAI()
-  .use(useRAG({ file: "docs.pdf" }))      // Document processing
-  .use(useCache({ ttl: 3600 }))           // Semantic caching
+- Node.js 18+ required.
+- Build output is generated in `dist/`.
   .use(useRouter())                        // Smart model selection
   .use(useGuard({ minLength: 10 }))       // Output validation
   .use(useDebug());                        // Development insights
