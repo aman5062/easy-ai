@@ -1,0 +1,76 @@
+{
+  "name": "easy-ai",
+  "version": "0.1.0",
+  "description": "Express.js for AI: a TypeScript framework for structured outputs, traces, RAG, and cost-aware AI features",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "easy-ai": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts src/cli.ts --format cjs,esm --dts --watch",
+    "start": "node dist/cli.js",
+    "link:local": "npm link",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "rag",
+    "openai",
+    "structured-outputs",
+    "traces",
+    "developer-tools",
+    "prompt-engineering",
+    "anthropic",
+    "easy",
+    "framework",
+    "chatgpt",
+    "gpt",
+    "machine-learning",
+    "natural-language-processing",
+    "nlp",
+    "embeddings",
+    "vector-search",
+    "semantic-search",
+    "document-processing",
+    "pdf",
+    "typescript"
+  ],
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/easy-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/easy-ai/issues"
+  },
+  "homepage": "https://github.com/yourusername/easy-ai#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsup": "^8.0.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "openai": "^4.28.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+# General ignores
+node_modules
+dist
+*.log
+.env
+.DS_Store
+
+# Testing artifacts (removed from production but kept ignored just in case)
+qa-scripts/
+qa-tests/
+qa-results/
+test-artifacts/
+coverage/
+.cache/
