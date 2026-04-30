@@ -1,12 +1,12 @@
 {
-  "name": "easy-ai",
+  "name": "@easyai-labs/easy-ai",
   "version": "0.1.0-alpha.0",
   "description": "Express.js for AI: a TypeScript framework for structured outputs, traces, RAG, and cost-aware AI features",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "bin": {
-    "easy-ai": "./dist/cli.js"
+    "easy-ai": "dist/cli.js"
   },
   "exports": {
     ".": {
